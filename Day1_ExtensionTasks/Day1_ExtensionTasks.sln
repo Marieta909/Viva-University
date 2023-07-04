@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3_Date Formatting", "3_Date
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4_Validation", "4_Validation\4_Validation.csproj", "{865D910A-A3E0-45F8-8B11-E56D460103EC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5_String Trimming", "5_String Trimming\5_String Trimming.csproj", "{7F9F6EE8-BBC5-4757-BEA8-F0B39CA2EC1F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{865D910A-A3E0-45F8-8B11-E56D460103EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{865D910A-A3E0-45F8-8B11-E56D460103EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{865D910A-A3E0-45F8-8B11-E56D460103EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F9F6EE8-BBC5-4757-BEA8-F0B39CA2EC1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F9F6EE8-BBC5-4757-BEA8-F0B39CA2EC1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F9F6EE8-BBC5-4757-BEA8-F0B39CA2EC1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F9F6EE8-BBC5-4757-BEA8-F0B39CA2EC1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
