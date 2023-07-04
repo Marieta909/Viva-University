@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1_StringManipulation", "1_StringManipulation\1_StringManipulation.csproj", "{5EEA9F6A-8E93-465B-8A86-FEB2C3641EFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "1_StringManipulation", "1_StringManipulation\1_StringManipulation.csproj", "{5EEA9F6A-8E93-465B-8A86-FEB2C3641EFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3_Date Formatting", "3_Date Formatting\3_Date Formatting.csproj", "{CF1D2BD3-364E-4FC2-9C24-B8B5155C0E28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3_Date Formatting", "3_Date Formatting\3_Date Formatting.csproj", "{CF1D2BD3-364E-4FC2-9C24-B8B5155C0E28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4_Validation", "4_Validation\4_Validation.csproj", "{865D910A-A3E0-45F8-8B11-E56D460103EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4_Validation", "4_Validation\4_Validation.csproj", "{865D910A-A3E0-45F8-8B11-E56D460103EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5_String Trimming", "5_String Trimming\5_String Trimming.csproj", "{7F9F6EE8-BBC5-4757-BEA8-F0B39CA2EC1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "5_String Trimming", "5_String Trimming\5_String Trimming.csproj", "{7F9F6EE8-BBC5-4757-BEA8-F0B39CA2EC1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "6_Object Serialization", "6_Object Serialization\6_Object Serialization.csproj", "{AA23D50A-5CF0-4BF3-A5F8-C405485780A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "6_Object Serialization", "6_Object Serialization\6_Object Serialization.csproj", "{AA23D50A-5CF0-4BF3-A5F8-C405485780A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "7_Number Rounding", "7_Number Rounding\7_Number Rounding.csproj", "{8CD148E5-1AD4-4D6D-90F7-37E6F0A5F448}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "7_Number Rounding", "7_Number Rounding\7_Number Rounding.csproj", "{8CD148E5-1AD4-4D6D-90F7-37E6F0A5F448}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "8_FileHandling", "8_FileHandling\8_FileHandling.csproj", "{9DD901C4-1315-4965-BDD2-605574E4E28C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{8CD148E5-1AD4-4D6D-90F7-37E6F0A5F448}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CD148E5-1AD4-4D6D-90F7-37E6F0A5F448}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CD148E5-1AD4-4D6D-90F7-37E6F0A5F448}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DD901C4-1315-4965-BDD2-605574E4E28C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DD901C4-1315-4965-BDD2-605574E4E28C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DD901C4-1315-4965-BDD2-605574E4E28C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DD901C4-1315-4965-BDD2-605574E4E28C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -12,8 +12,7 @@ Console.ReadKey();
 public static class DoubleExtensions
 {
     public static double Round(this double value, int decimalPlaces)
-    {
-       
+    {   
         return Math.Round(value * Math.Pow(10, decimalPlaces)) / Math.Pow(10, decimalPlaces);
     }
 }
