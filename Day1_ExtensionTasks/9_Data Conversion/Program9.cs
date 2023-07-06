@@ -8,7 +8,7 @@ Console.WriteLine("Press any key to exit.");
 Console.ReadKey();
 public static class StringExtensions
 {
-    public static TEnum ToEnum<TEnum>(this string value) where TEnum : struct
+    public static TEnum ToEnum<TEnum>(this string value) where TEnum : Enum
     {
         return (TEnum)Enum.Parse(typeof(TEnum), value, true);
     }
@@ -16,6 +16,7 @@ public static class StringExtensions
 enum Color
 {
     Red,
-    Blue,
-    Green
+    Green,
+    Blue
+    
 }

@@ -1,4 +1,4 @@
-﻿string str = "hello world";
+﻿string str = "hello world hbhh";
 string titleCase = str.TitleCase();
 Console.WriteLine(titleCase);
 
@@ -12,7 +12,7 @@ public static class StringExtensions
             if (words[i].Length > 0)
             {
                 char firstLetter = char.ToUpper(words[i][0]);
-                string rest = words[i][1..].ToLower();
+                string rest = words[i][1..];
                 words[i] = firstLetter + rest;
             }
         }
