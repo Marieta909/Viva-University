@@ -19,21 +19,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "8_FileHandling", "8_FileHan
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "9_Data Conversion", "9_Data Conversion\9_Data Conversion.csproj", "{FFDDBF00-A3C1-40EE-93F0-CEC4A9BEEF18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2_Collection Sorting", "2_Collection Sorting\2_Collection Sorting.csproj", "{D62225CC-C10B-4454-B6A1-E23F5235BD6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2_Collection Sorting", "2_Collection Sorting\2_Collection Sorting.csproj", "{D62225CC-C10B-4454-B6A1-E23F5235BD6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10_LINQIntegration", "10_LINQIntegration\10_LINQIntegration.csproj", "{4EFFB820-B817-44D7-A881-2F2FCB119693}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "10_LINQIntegration", "10_LINQIntegration\10_LINQIntegration.csproj", "{4EFFB820-B817-44D7-A881-2F2FCB119693}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "11_Call_Data_Analysis", "11_Call_Data_Analysis\11_Call_Data_Analysis.csproj", "{56C10585-B2CA-422B-BCF0-73116E77A2B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "11_Call_Data_Analysis", "11_Call_Data_Analysis\11_Call_Data_Analysis.csproj", "{56C10585-B2CA-422B-BCF0-73116E77A2B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "12_SMSFiltering", "12_SMSFiltering\12_SMSFiltering.csproj", "{91A893B3-2190-4E4A-95B2-301404E99D6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "12_SMSFiltering", "12_SMSFiltering\12_SMSFiltering.csproj", "{91A893B3-2190-4E4A-95B2-301404E99D6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "13_PhoneNumberFormatting", "13_PhoneNumberFormatting\13_PhoneNumberFormatting.csproj", "{AACFEF08-64F7-4405-A8F8-E4EB9E2BD4D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "13_PhoneNumberFormatting", "13_PhoneNumberFormatting\13_PhoneNumberFormatting.csproj", "{AACFEF08-64F7-4405-A8F8-E4EB9E2BD4D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "14_DataUsageMonitoring", "14_DataUsageMonitoring\14_DataUsageMonitoring.csproj", "{8B1F738C-3D88-4F4D-9FC3-5527B9CAA814}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "14_DataUsageMonitoring", "14_DataUsageMonitoring\14_DataUsageMonitoring.csproj", "{8B1F738C-3D88-4F4D-9FC3-5527B9CAA814}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "15_BillingCalculation", "15_BillingCalculation\15_BillingCalculation.csproj", "{7118F37B-8216-44DA-AF1F-59C06F7AA081}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "15_BillingCalculation", "15_BillingCalculation\15_BillingCalculation.csproj", "{7118F37B-8216-44DA-AF1F-59C06F7AA081}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "16_NetworkSpeedAnalysis", "16_NetworkSpeedAnalysis\16_NetworkSpeedAnalysis.csproj", "{29818706-F9CD-4423-8D79-DFEE8F18EF98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "16_NetworkSpeedAnalysis", "16_NetworkSpeedAnalysis\16_NetworkSpeedAnalysis.csproj", "{29818706-F9CD-4423-8D79-DFEE8F18EF98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "17_RoamingDetection", "17_RoamingDetection\17_RoamingDetection.csproj", "{23EB698B-36C9-4BA7-9C87-792C297072E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -105,6 +107,10 @@ Global
 		{29818706-F9CD-4423-8D79-DFEE8F18EF98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29818706-F9CD-4423-8D79-DFEE8F18EF98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29818706-F9CD-4423-8D79-DFEE8F18EF98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23EB698B-36C9-4BA7-9C87-792C297072E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23EB698B-36C9-4BA7-9C87-792C297072E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23EB698B-36C9-4BA7-9C87-792C297072E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23EB698B-36C9-4BA7-9C87-792C297072E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
