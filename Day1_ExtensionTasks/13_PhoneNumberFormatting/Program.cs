@@ -1,5 +1,5 @@
 ﻿string phoneNumber = "37494600445";
-string phoneNumber1 = "3a749070113";
+string phoneNumber1 = "3749070113";
 string formattedNumber = phoneNumber.FormatPhoneNumber();
 string formattedNumber1 = phoneNumber1.FormatPhoneNumber();
 
