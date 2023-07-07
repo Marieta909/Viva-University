@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "14_DataUsageMonitoring", "1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "15_BillingCalculation", "15_BillingCalculation\15_BillingCalculation.csproj", "{7118F37B-8216-44DA-AF1F-59C06F7AA081}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "16_NetworkSpeedAnalysis", "16_NetworkSpeedAnalysis\16_NetworkSpeedAnalysis.csproj", "{29818706-F9CD-4423-8D79-DFEE8F18EF98}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,10 @@ Global
 		{7118F37B-8216-44DA-AF1F-59C06F7AA081}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7118F37B-8216-44DA-AF1F-59C06F7AA081}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7118F37B-8216-44DA-AF1F-59C06F7AA081}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29818706-F9CD-4423-8D79-DFEE8F18EF98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29818706-F9CD-4423-8D79-DFEE8F18EF98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29818706-F9CD-4423-8D79-DFEE8F18EF98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29818706-F9CD-4423-8D79-DFEE8F18EF98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
