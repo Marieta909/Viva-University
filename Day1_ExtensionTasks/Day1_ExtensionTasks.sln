@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10_LINQIntegration", "10_LI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "11_Call_Data_Analysis", "11_Call_Data_Analysis\11_Call_Data_Analysis.csproj", "{56C10585-B2CA-422B-BCF0-73116E77A2B1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "12_SMSFiltering", "12_SMSFiltering\12_SMSFiltering.csproj", "{91A893B3-2190-4E4A-95B2-301404E99D6C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{56C10585-B2CA-422B-BCF0-73116E77A2B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56C10585-B2CA-422B-BCF0-73116E77A2B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56C10585-B2CA-422B-BCF0-73116E77A2B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91A893B3-2190-4E4A-95B2-301404E99D6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91A893B3-2190-4E4A-95B2-301404E99D6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91A893B3-2190-4E4A-95B2-301404E99D6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91A893B3-2190-4E4A-95B2-301404E99D6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
