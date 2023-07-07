@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "11_Call_Data_Analysis", "11
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "12_SMSFiltering", "12_SMSFiltering\12_SMSFiltering.csproj", "{91A893B3-2190-4E4A-95B2-301404E99D6C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "13_PhoneNumberFormatting", "13_PhoneNumberFormatting\13_PhoneNumberFormatting.csproj", "{AACFEF08-64F7-4405-A8F8-E4EB9E2BD4D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{91A893B3-2190-4E4A-95B2-301404E99D6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91A893B3-2190-4E4A-95B2-301404E99D6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91A893B3-2190-4E4A-95B2-301404E99D6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AACFEF08-64F7-4405-A8F8-E4EB9E2BD4D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AACFEF08-64F7-4405-A8F8-E4EB9E2BD4D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AACFEF08-64F7-4405-A8F8-E4EB9E2BD4D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AACFEF08-64F7-4405-A8F8-E4EB9E2BD4D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
