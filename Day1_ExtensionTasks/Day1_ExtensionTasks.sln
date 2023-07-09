@@ -35,9 +35,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "15_BillingCalculation", "15
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "16_NetworkSpeedAnalysis", "16_NetworkSpeedAnalysis\16_NetworkSpeedAnalysis.csproj", "{29818706-F9CD-4423-8D79-DFEE8F18EF98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "17_RoamingDetection", "17_RoamingDetection\17_RoamingDetection.csproj", "{23EB698B-36C9-4BA7-9C87-792C297072E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "17_RoamingDetection", "17_RoamingDetection\17_RoamingDetection.csproj", "{23EB698B-36C9-4BA7-9C87-792C297072E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "18_PlanRecommendation", "18_PlanRecommendation\18_PlanRecommendation.csproj", "{69EA0B61-E663-4916-9875-1931461DA0A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "18_PlanRecommendation", "18_PlanRecommendation\18_PlanRecommendation.csproj", "{69EA0B61-E663-4916-9875-1931461DA0A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "19_NetworkCoverage", "19_NetworkCoverage\19_NetworkCoverage.csproj", "{EEAC74F4-3311-4045-BA89-A7DAA5CBA063}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,6 +119,10 @@ Global
 		{69EA0B61-E663-4916-9875-1931461DA0A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69EA0B61-E663-4916-9875-1931461DA0A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69EA0B61-E663-4916-9875-1931461DA0A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEAC74F4-3311-4045-BA89-A7DAA5CBA063}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEAC74F4-3311-4045-BA89-A7DAA5CBA063}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEAC74F4-3311-4045-BA89-A7DAA5CBA063}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEAC74F4-3311-4045-BA89-A7DAA5CBA063}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
