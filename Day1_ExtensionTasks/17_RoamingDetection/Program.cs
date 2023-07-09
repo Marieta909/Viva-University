@@ -1,4 +1,4 @@
-﻿List<CallRecord> callRecords = new List<CallRecord>
+﻿List<CallRecord> callRecords = new()
 {
     new CallRecord { PhoneNumber = "123456789", MCC = "283", MNC = "05", CallDuration = TimeSpan.FromMinutes(5) },
     new CallRecord { PhoneNumber = "987654321", MCC = "284", MNC = "01", CallDuration = TimeSpan.FromMinutes(8) },
@@ -25,7 +25,7 @@ public static class EnumerableExtensions
 
 public class CallRecord
 {
-    public string PhoneNumber { get; set; }
+    public string? PhoneNumber { get; set; }
     public string MCC { get; set; }
     public string MNC { get; set; }
     public TimeSpan CallDuration { get; set; }
