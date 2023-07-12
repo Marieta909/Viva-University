@@ -10,6 +10,12 @@ internal class InsufficientBalanceException : Exception
 
     public InsufficientBalanceException()
     {
+        decimal necessaryBalance = 100;
+        if (Balance < necessaryBalance)
+        {
+            decimal addBalance = necessaryBalance - Balance;
+            throw new InsufficientBalanceException("Balance is not enough.", "Add $" + addBalance + " for service activation.");
+        }
     }
 
     public InsufficientBalanceException(string? message) : base(message)
@@ -29,4 +35,6 @@ internal class InsufficientBalanceException : Exception
     protected InsufficientBalanceException(SerializationInfo info, StreamingContext context) : base(info, context)
     {
     }
+
+    public decimal Balance { get; }
 }

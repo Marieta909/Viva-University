@@ -21,5 +21,5 @@ internal class ServiceActivationException : Exception
     {
     }
 
-    public string Resolution { get; internal set; }
+    public object Solution { get; internal set; }
 }

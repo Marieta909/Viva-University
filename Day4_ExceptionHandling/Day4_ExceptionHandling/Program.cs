@@ -73,26 +73,9 @@
 
 //------------------------Task 3: Custom Exception Handling
 
-//class Subscriber
-//{
-//    public string phoneNum;
-//    public decimal balance;
-//    public bool isInRoaming;
-//    public bool isServiceActive;
-//    DateTime expirationDate;
+Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-//    public Subscriber(string phoneNum, decimal balance, bool isInRoaming, DateTime expirationDate, bool isServiceActive)
-//    {
-//        this.phoneNum = phoneNum;
-//        this.balance = balance;
-//        this.isInRoaming = isInRoaming;
-//        this.expirationDate = expirationDate;
-//        this.isServiceActive = isServiceActive;
-//    }
-//}
-
-
-Subscriber subscriber = new("123456789", 150, false, DateTime.Now.AddDays(4), false);
+Subscriber subscriber = new("93070113", 50, false, DateTime.Now.AddDays(12), false);
 subscriber.ActivateService();
 class Subscriber
 {
@@ -117,24 +100,24 @@ class Subscriber
         {
             if (ExpirationDate - DateTime.Now <= TimeSpan.FromDays(10))
             {
-                throw new ServiceActivationException("Minimum required expiration date not met.", "Extend expiration date to at least 10 days in the future.");
+                throw new ServiceActivationException("There isn't at least 10 days until expirationDate", "Extend expiration date to at least 10 days.");
             }
 
             if (IsInRoaming)
             {
-                throw new ServiceActivationException("Subscriber is in roaming.", "Disable roaming to activate the service.");
+                throw new ServiceActivationException("Subscriber is in roaming.", "If you want to activate service, turn off roaming");
             }
 
             if (IsServiceActive)
             {
-                throw new ServiceActivationException("Service is already active.", "Deactivate the existing service before activating a new one.");
+                throw new ServiceActivationException("Service is active at the moment.", "If you want to activate new service, deactivate the existing one.");
             }
 
-            decimal requiredBalance = 100; 
-            if (Balance < requiredBalance)
+            decimal necessaryBalance = 100; 
+            if (Balance < necessaryBalance)
             {
-                decimal additionalBalanceRequired = requiredBalance - Balance;
-                throw new InsufficientBalanceException("Insufficient balance.", "Add $" + additionalBalanceRequired + " to your account for service activation.");
+                decimal addBalance = necessaryBalance - Balance;
+                throw new InsufficientBalanceException("Balance is not enough.", "Add $" + addBalance + " for service activation.");
             }
 
             IsServiceActive = true;
@@ -142,16 +125,20 @@ class Subscriber
         }
         catch (ServiceActivationException ex)
         {
-            Console.WriteLine("Service activation failed: " + ex.Message);
-            Console.WriteLine("Resolution: " + ex.Resolution);
+            Console.WriteLine($"Service activation failed: {ex.Message}" );
+            Console.WriteLine($"Solution: {ex.Solution}" );
         }
         catch (Exception ex)
         {
-            Console.WriteLine("An unexpected error occurred during service activation: " + ex.Message);
+            Console.WriteLine($"Something went wrong: {ex.Message} ");
         }
         finally
         {
-            Console.WriteLine("Service activation process completed.");
+            if (IsServiceActive)
+            {
+                Console.WriteLine("Service activation process completed.");
+            }
+            
         }
     }
 }
