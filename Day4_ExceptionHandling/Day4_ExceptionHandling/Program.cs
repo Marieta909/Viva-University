@@ -75,7 +75,7 @@
 
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-Subscriber subscriber = new("93070113", 50, true, DateTime.Now.AddDays(12), false);
+Subscriber subscriber = new("93070113", 50, false, DateTime.Now.AddDays(12), false) ;
 subscriber.ActivateService();
 class Subscriber
 {
@@ -123,13 +123,21 @@ class Subscriber
             IsServiceActive = true;
             Console.WriteLine("Service activated successfully!");
         }
-        catch (ServiceActivationException ex)
+        catch (InsufficientBalanceException ex)
         {
-            InsufficientBalanceException? solution = ex as InsufficientBalanceException;
+            
 
-            Console.WriteLine($"Service activation failed: {solution.Message}" );
-            Console.WriteLine($"Solution: {solution.CustomMessage}" );
+            Console.WriteLine($"Service activation failed: {ex.Message}");
+            Console.WriteLine($"Solution: {ex.CustomMessage}");
         }
+
+        //catch (ServiceActivationException ex)
+        //{
+        //    InsufficientBalanceException? solution = ex as InsufficientBalanceException;
+
+        //    Console.WriteLine($"Service activation failed: {solution.Message}" );
+        //    Console.WriteLine($"Solution: {solution.CustomMessage}" );
+        //}
         catch (Exception ex)
         {
             Console.WriteLine($"Something went wrong: {ex.Message} ");
