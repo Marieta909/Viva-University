@@ -5,21 +5,18 @@ using System.Runtime.Serialization;
 [Serializable]
 internal class InsufficientBalanceException : Exception
 {
-    private string v1;
-    private string v2;
+    public string v1;
+    public string v2;
+    //public string CustomMessage { get; set; }
 
     public InsufficientBalanceException()
     {
-        decimal necessaryBalance = 100;
-        if (Balance < necessaryBalance)
-        {
-            decimal addBalance = necessaryBalance - Balance;
-            throw new InsufficientBalanceException("Balance is not enough.", "Add $" + addBalance + " for service activation.");
-        }
+        
     }
 
     public InsufficientBalanceException(string? message) : base(message)
     {
+
     }
 
     public InsufficientBalanceException(string v1, string v2)
@@ -36,5 +33,5 @@ internal class InsufficientBalanceException : Exception
     {
     }
 
-    public decimal Balance { get; }
+    
 }
