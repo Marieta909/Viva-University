@@ -73,6 +73,8 @@
 
 //------------------------Task 3: Custom Exception Handling
 
+
+
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 
 Subscriber subscriber = new("93070113", 50, false, DateTime.Now.AddDays(12), false) ;
@@ -104,7 +106,7 @@ class Subscriber
             }
 
             if (IsInRoaming)
-            {
+            {  
                 throw new ServiceActivationException("Subscriber is in roaming.", "If you want to activate service, turn off roaming");
             }
 
@@ -123,10 +125,12 @@ class Subscriber
             IsServiceActive = true;
             Console.WriteLine("Service activated successfully!");
         }
+        catch (NullReferenceException ex)
+        {
+            Console.WriteLine($"{ex.Message}");
+        }
         catch (InsufficientBalanceException ex)
         {
-            
-
             Console.WriteLine($"Service activation failed: {ex.Message}");
             Console.WriteLine($"Solution: {ex.CustomMessage}");
         }
@@ -135,8 +139,21 @@ class Subscriber
         //{
         //    InsufficientBalanceException? solution = ex as InsufficientBalanceException;
 
-        //    Console.WriteLine($"Service activation failed: {solution.Message}" );
-        //    Console.WriteLine($"Solution: {solution.CustomMessage}" );
+        //    Console.WriteLine($"Service activation failed: {solution.Message}");
+        //    Console.WriteLine($"Solution: {solution.CustomMessage}");
+        //}
+        //catch (ServiceActivationException ex)
+        //{ 
+
+        //    if (ex is InsufficientBalanceException solution)
+        //    {
+        //        Console.WriteLine($"Service activation failed: {solution.Message}");
+        //        Console.WriteLine($"Solution: {solution.CustomMessage}");
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine($"Service activation failed: {ex.Message}");
+        //    }
         //}
         catch (Exception ex)
         {
@@ -155,15 +172,16 @@ class Subscriber
 
         
     }
-
-    class InsufficientBalanceException :  ServiceActivationException
+    class InsufficientBalanceException : ServiceActivationException
     {
-        public string CustomMessage { get; set; }   
+        public string CustomMessage { get; set; }
 
-        public InsufficientBalanceException(string message,  string customMessage) : base(message, customMessage)
+        public InsufficientBalanceException(string message, string customMessage) : base(message, customMessage)
         {
             CustomMessage = customMessage;
         }
+
     }
+
 }
 

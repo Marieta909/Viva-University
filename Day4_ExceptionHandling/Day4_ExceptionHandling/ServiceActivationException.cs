@@ -11,6 +11,7 @@ internal class ServiceActivationException : Exception
 
     public ServiceActivationException(string? message, string v) : base(message)
     {
+   
     }
 
     public ServiceActivationException(string? message, Exception? innerException) : base(message, innerException)
