@@ -2,6 +2,7 @@
 using FirstEntity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using static FirstEntity.Program;
 
 public class ApplicationDbContext : DbContext
 { 
@@ -16,11 +17,27 @@ public class ApplicationDbContext : DbContext
     public DbSet<NewCustomer> NewCustomers { get; set; }
     public DbSet<CancelledOrder> CancelledOrders { get; set; }
     public DbSet<OrderItems> OrderItems { get; set; }
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<OrderViewModel> OrderViewModel { get; set; }
+    public DbSet<Employee> Employee { get; set; }
+
+    //public int CalculateAge(DateTime birthdate)
+    //{
+    //    int age = DateTime.Now.Year - birthdate.Year;
+
+    //    if (birthdate > DateTime.Now.AddYears(-age))
+    //    {
+    //        age--;
+    //    }
+
+    //    return age;
+    //}
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        //էստեղ փորձի ֆունկցիադ անես, որ code-first լինի
         //modelBuilder.Entity<Product>();
-
+        modelBuilder.Entity<CustomerAge>().HasNoKey();
         modelBuilder.Entity<Customer>()
             .HasMany(c => c.Orders)
             .WithOne(o => o.Customer)
@@ -60,16 +77,44 @@ public class ApplicationDbContext : DbContext
         .WithMany(p => p.OrderItems)
         .HasForeignKey(oi => oi.ProductId);
 
+        modelBuilder.Entity<Product>()
+            .HasOne(p => p.Category)
+            .WithMany(c => c.Products)
+            .HasForeignKey(p => p.CategoryId);
+
+        modelBuilder.Entity<Customer>().Property(b => b.Timestamp).IsRowVersion();
+
+        modelBuilder.Entity<OrderViewModel>(ovm =>
+        {
+            ovm.HasNoKey();
+            ovm.ToView("View_OrderViewModel");
+        });
+
+        modelBuilder.Entity<Employee>().HasKey(e  => e.EmployeeId);
+
+        modelBuilder
+            .Entity<Employee>()
+            .ToTable("Employees", t => t.IsTemporal());
+
+        // modelBuilder.HasDbFunction(() => CalculateAge(default));
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer(@"Server=.;Database=FirstEntity;Trusted_Connection=True; TrustServerCertificate=True");
-
-        optionsBuilder.LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
-
+        optionsBuilder.UseLoggerFactory(MyLoggerFactory);
     }
+    // устанавливаем фабрику логгера
+    public static readonly ILoggerFactory MyLoggerFactory = LoggerFactory.Create(builder =>
+    {
+        builder.AddProvider(new CustomLoggerProvider());    // указываем наш провайдер логгирования
+    });
+
+
+    //optionsBuilder.LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
 
 }
+
+
 
 

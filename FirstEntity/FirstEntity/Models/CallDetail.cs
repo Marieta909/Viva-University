@@ -8,4 +8,8 @@ public class CallDetail
     public string ReceiverNumber { get; set; }
     public DateTime CallStartTime { get; set; }
     public decimal CallDuration { get; set; }
+
+    public int? CustomerId { get; set; }
+
+    public Customer? Customer { get; set; }
 }

@@ -7,9 +7,8 @@ public class Order
     [Required]
     [MaxLength(50)]
     public DateTime OrderDate { get; set; }
-    [Required]
 
-    public int CustomerId { get; set; }
+    public int? CustomerId { get; set; }
     public Customer? Customer { get; set; }
     [Required]
     [MaxLength(11)]

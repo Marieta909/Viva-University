@@ -13,10 +13,11 @@ public class Product
     [Range(0, int.MaxValue, ErrorMessage = "Stock quantity cannot be negative.")]
     public int StockQuantity { get; set; }
 
-    public string? Category {get; set; }
-
     public ProductDetails Details { get; set; }
 
     public IList<OrderItems> OrderItems { get; set; }
+
+    public int? CategoryId { get; set; }
+    public Category? Category { get; set; }
 
 }

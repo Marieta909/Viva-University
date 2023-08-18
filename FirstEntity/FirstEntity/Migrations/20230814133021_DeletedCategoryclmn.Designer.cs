@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FirstEntity.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class CustomerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230814133021_DeletedCategoryclmn")]
+    partial class DeletedCategoryclmn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,16 +64,11 @@ namespace FirstEntity.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CustomerId")
-                        .HasColumnType("int");
-
                     b.Property<string>("ReceiverNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CallID");
-
-                    b.HasIndex("CustomerId");
 
                     b.ToTable("CallDetails");
                 });
@@ -93,23 +91,6 @@ namespace FirstEntity.Migrations
                     b.ToTable("CancelledOrders");
                 });
 
-            modelBuilder.Entity("Category", b =>
-                {
-                    b.Property<int>("CategoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
-
-                    b.Property<string>("CategoryName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CategoryId");
-
-                    b.ToTable("Categories");
-                });
-
             modelBuilder.Entity("Customer", b =>
                 {
                     b.Property<int>("CustomerId")
@@ -118,16 +99,10 @@ namespace FirstEntity.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerId"));
 
-                    b.Property<decimal>("AVGcalls")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
-
-                    b.Property<DateTime>("Birthdate")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("ContactNumber")
                         .IsRequired()
@@ -147,70 +122,12 @@ namespace FirstEntity.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<byte[]>("Timestamp")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("rowversion");
-
                     b.HasKey("CustomerId");
 
                     b.HasIndex("Email")
                         .IsUnique();
 
                     b.ToTable("Customers");
-                });
-
-            modelBuilder.Entity("CustomerAge", b =>
-                {
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
-                    b.ToTable("CustomerAge");
-                });
-
-            modelBuilder.Entity("Employee", b =>
-                {
-                    b.Property<int>("EmployeeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployeeId"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("PeriodEnd")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("datetime2")
-                        .HasColumnName("PeriodEnd");
-
-                    b.Property<DateTime>("PeriodStart")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("datetime2")
-                        .HasColumnName("PeriodStart");
-
-                    b.Property<string>("Position")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Salary")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("EmployeeId");
-
-                    b.ToTable("Employees", (string)null);
-
-                    b.ToTable(tb => tb.IsTemporal(ttb =>
-                            {
-                                ttb.UseHistoryTable("EmployeesHistory");
-                                ttb
-                                    .HasPeriodStart("PeriodStart")
-                                    .HasColumnName("PeriodStart");
-                                ttb
-                                    .HasPeriodEnd("PeriodEnd")
-                                    .HasColumnName("PeriodEnd");
-                            }));
                 });
 
             modelBuilder.Entity("FeaturedProduct", b =>
@@ -276,7 +193,7 @@ namespace FirstEntity.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"));
 
-                    b.Property<int?>("CustomerId")
+                    b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("OrderDate")
@@ -319,22 +236,6 @@ namespace FirstEntity.Migrations
                     b.ToTable("OrderItems");
                 });
 
-            modelBuilder.Entity("OrderViewModel", b =>
-                {
-                    b.Property<string>("CustomerName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("TotalAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.ToTable((string)null);
-
-                    b.ToView("View_OrderViewModel", (string)null);
-                });
-
             modelBuilder.Entity("Product", b =>
                 {
                     b.Property<int>("ProductId")
@@ -342,9 +243,6 @@ namespace FirstEntity.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
-
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("int");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -358,8 +256,6 @@ namespace FirstEntity.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ProductId");
-
-                    b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
                 });
@@ -402,15 +298,6 @@ namespace FirstEntity.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("CallDetail", b =>
-                {
-                    b.HasOne("Customer", "Customer")
-                        .WithMany("CallDetails")
-                        .HasForeignKey("CustomerId");
-
-                    b.Navigation("Customer");
-                });
-
             modelBuilder.Entity("CancelledOrder", b =>
                 {
                     b.HasOne("Order", "Order")
@@ -437,7 +324,9 @@ namespace FirstEntity.Migrations
                 {
                     b.HasOne("Customer", "Customer")
                         .WithMany("Orders")
-                        .HasForeignKey("CustomerId");
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Customer");
                 });
@@ -461,15 +350,6 @@ namespace FirstEntity.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("Product", b =>
-                {
-                    b.HasOne("Category", "Category")
-                        .WithMany("Products")
-                        .HasForeignKey("CategoryId");
-
-                    b.Navigation("Category");
-                });
-
             modelBuilder.Entity("ProductDetails", b =>
                 {
                     b.HasOne("Product", "Product")
@@ -481,15 +361,8 @@ namespace FirstEntity.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("Category", b =>
-                {
-                    b.Navigation("Products");
-                });
-
             modelBuilder.Entity("Customer", b =>
                 {
-                    b.Navigation("CallDetails");
-
                     b.Navigation("Orders");
                 });
 

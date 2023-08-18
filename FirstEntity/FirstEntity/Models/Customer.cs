@@ -17,8 +17,15 @@ public class Customer
     [MaxLength(100)]
     [EmailAddress]    
     public string? Email { get; set; }
+    public DateTime Birthdate { get; set; }
 
     public bool IsDeleted { get; set; }
 
+    public decimal AVGcalls { get; set; }
+
     public ICollection<Order>? Orders { get; set; }
+    public ICollection<CallDetail>? CallDetails { get; set; }
+
+    [Timestamp]
+    public byte[]? Timestamp { get; set; }
 }

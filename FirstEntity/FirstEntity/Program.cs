@@ -1,5 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Linq;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System;
+using System.ComponentModel;
+using System.Data;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace FirstEntity
 {
@@ -69,13 +74,13 @@ namespace FirstEntity
 
             //using (ApplicationDbContext context = new()) //Task 2
             //{
-            //    var highProducts = context.Products
+            //    var highOrders = context.Orders
             //        .Where(p => p.Price > 100)
             //        .ToList();
 
-            //    foreach (var product in highProducts)
+            //    foreach (var Order in highOrders)
             //    {
-            //        Console.WriteLine($"product ID: {product.ProductId}, Name: {product.ProductName}, Price: {product.Price}");
+            //        Console.WriteLine($"Order ID: {Order.OrderId}, Name: {Order.OrderName}, Price: {Order.Price}");
 
             //    }
             //}
@@ -93,11 +98,11 @@ namespace FirstEntity
 
             //using (ApplicationDbContext context = new()) //Task 4
             //{
-            //    var prodSorted = context.Products
+            //    var prodSorted = context.Orders
             //        .OrderBy(p => p.Price);
             //        .ToList();
             //    foreach (var prod in prodSorted)
-            //        Console.WriteLine($"Price: {prod.Price}, Product ID: {prod.ProductId}, Product Name: {prod.ProductName}");
+            //        Console.WriteLine($"Price: {prod.Price}, Order ID: {prod.OrderId}, Order Name: {prod.OrderName}");
             //}
 
             //using (ApplicationDbContext context = new()) //Task 5
@@ -134,54 +139,54 @@ namespace FirstEntity
             //        Console.WriteLine($"{cusOrd.Order.OrderId} ({cusOrd.Order.OrderDate})- {cusOrd.Customer.CustomerId} ({cusOrd.Customer.Name})");
             //}
 
-            using (ApplicationDbContext context = new()) //task 8 
-            {
-                //var query = context.Orders
-                //    .Join(
-                //        context.OrderItems,
-                //        order => order.OrderId,
-                //        orderitem => orderitem.OrderId,
-                //        (order, orderitem) => new
-                //        {
-                //            order.OrderId,
-                //            order.OrderDate,
-                //            orderitem.Product.ProductName,
-                //            orderitem.ProductId
-                //        })
-                //    .Join(
-                //        context.Products,
-                //        joined => joined.ProductName,
-                //        product => product.ProductName,
-                //        (joined, product) => new
-                //        {
-                //            joined.OrderId,
-                //            joined.OrderDate,
-                //            joined.ProductName,
-                //            joined.ProductId
-                //        })
-                //    .ToList();
+            //using (ApplicationDbContext context = new()) //task 8 
+            //{
+            //var query = context.Orders
+            //    .Join(
+            //        context.OrderItems,
+            //        order => order.OrderId,
+            //        orderitem => orderitem.OrderId,
+            //        (order, orderitem) => new
+            //        {
+            //            order.OrderId,
+            //            order.OrderDate,
+            //            orderitem.Order.OrderName,
+            //            orderitem.OrderId
+            //        })
+            //    .Join(
+            //        context.Orders,
+            //        joined => joined.OrderName,
+            //        Order => Order.OrderName,
+            //        (joined, Order) => new
+            //        {
+            //            joined.OrderId,
+            //            joined.OrderDate,
+            //            joined.OrderName,
+            //            joined.OrderId
+            //        })
+            //    .ToList();
 
-                var query = context.Orders
-                .Join(
-                    context.OrderItems,
-                    order => order.OrderId,
-                    orderItem => orderItem.OrderId,
-                    (order, orderItem) => new
-                    {
-                        order.OrderId,
-                        order.OrderDate,
-                        orderItem.Product.ProductName,
-                        orderItem.Product.ProductId,
-                    })
-                .ToList();
+            //var query = context.Orders
+            //    .Join(
+            //        context.OrderItems,
+            //        order => order.OrderId,
+            //        orderItem => orderItem.OrderId,
+            //        (order, orderItem) => new
+            //        {
+            //            order.OrderId,
+            //            order.OrderDate,
+            //            orderItem.Order.OrderName,
+            //            orderItem.Order.OrderId,
+            //        })
+            //    .ToList();
 
-                foreach (var result in query)
-                {
-                    Console.WriteLine($"Order ID: {result.OrderId}, Order Date: {result.OrderDate}");
-                    Console.WriteLine($"Product: {result.ProductName}, Product ID: {result.ProductId}");
-                    Console.WriteLine();
-                }
-            }
+            //    foreach (var result in query)
+            //    {
+            //        Console.WriteLine($"Order ID: {result.OrderId}, Order Date: {result.OrderDate}");
+            //        Console.WriteLine($"Order: {result.OrderName}, Order ID: {result.OrderId}");
+            //        Console.WriteLine();
+            //    }
+            //}
 
             //using (ApplicationDbContext context = new()) //Task 9
             //{
@@ -218,18 +223,18 @@ namespace FirstEntity
 
             //using (ApplicationDbContext context = new()) //Task 11
             //{
-            //    var product = context.Products.FirstOrDefault(p => p.ProductId == 1);
-            //    if (product != null)
+            //    var Order = context.Orders.FirstOrDefault(p => p.OrderId == 1);
+            //    if (Order != null)
             //    {
 
-            //        product.Category = "Phone";
+            //        Order.Category = "Phone";
             //        context.SaveChanges();
             //    }
             //}
 
-            //using (ApplicationDbContext context = new()) //Task 11
+            //using (ApplicationDbContext context = new()) //Task 11 ????????????????????????????????????????????????????
             //{
-            //    var prodGroups = context.Products
+            //    var prodGroups = context.Orders
             //        .GroupBy(prod => prod.Category)
             //        .Select(group => new
             //        {
@@ -240,7 +245,7 @@ namespace FirstEntity
 
             //    foreach (var prodGroup in prodGroups)
             //    {
-            //        Console.WriteLine($"Category: {prodGroup.Category}, Product Average: {prodGroup.prodAVG}");
+            //        Console.WriteLine($"Category: {prodGroup.Category}, Order Average: {prodGroup.prodAVG}");
             //    }
             //}
 
@@ -277,18 +282,18 @@ namespace FirstEntity
 
             //using (ApplicationDbContext context = new()) //Task 14
             //{
-            //    context.FeaturedProducts.Add(new FeaturedProduct { ProductId = 1, Name = "Featured Product A" });
-            //    context.FeaturedProducts.Add(new FeaturedProduct { ProductId = 2, Name = "Featured Product B" });
+            //    context.FeaturedOrders.Add(new FeaturedOrder { OrderId = 1, Name = "Featured Order A" });
+            //    context.FeaturedOrders.Add(new FeaturedOrder { OrderId = 2, Name = "Featured Order B" });
             //    context.SaveChanges();
 
-            //    context.BestSellerProducts.Add(new BestSellerProduct { ProductId = 2, Name = "Best Seller Product B" });
-            //    context.BestSellerProducts.Add(new BestSellerProduct { ProductId = 3, Name = "Best Seller Product C" });
+            //    context.BestSellerOrders.Add(new BestSellerOrder { OrderId = 2, Name = "Best Seller Order B" });
+            //    context.BestSellerOrders.Add(new BestSellerOrder { OrderId = 3, Name = "Best Seller Order C" });
             //    context.SaveChanges();
 
-            //    var interProds = context.FeaturedProducts
-            //        .Select(fp => fp.ProductId)
-            //        .Intersect(context.BestSellerProducts
-            //        .Select(bsp => bsp.ProductId))
+            //    var interProds = context.FeaturedOrders
+            //        .Select(fp => fp.OrderId)
+            //        .Intersect(context.BestSellerOrders
+            //        .Select(bsp => bsp.OrderId))
             //        .ToList();
 
             //    foreach (var prodId in interProds)
@@ -322,10 +327,10 @@ namespace FirstEntity
 
             //using (ApplicationDbContext context = new()) //Task 17
             //{
-            //    decimal maxProdPrice = context.Products
-            //        .Max(product => product.Price);
+            //    decimal maxProdPrice = context.Orders
+            //        .Max(Order => Order.Price);
 
-            //    Console.WriteLine($"Maximum Product Product: {maxProdPrice}");
+            //    Console.WriteLine($"Maximum Order Order: {maxProdPrice}");
             //}
 
             //using (ApplicationDbContext context = new()) //Task 18
@@ -389,20 +394,20 @@ namespace FirstEntity
 
             //using (ApplicationDbContext context = new()) //Task 20
             //{
-            //    var products = context.Products
+            //    var Orders = context.Orders
             //        .AsNoTracking() 
             //        .ToList();  
 
-            //    var prod = context.Products.FirstOrDefault();
+            //    var prod = context.Orders.FirstOrDefault();
             //    if (prod != null)
             //    {
-            //        prod.ProductName = "Samsung A10";
+            //        prod.OrderName = "Samsung A10";
             //        context.SaveChanges();
             //    }
 
-            //    foreach (var product in products)
+            //    foreach (var Order in Orders)
             //    {
-            //        Console.WriteLine($"Product ID: {product.ProductId}, Name: {product.ProductName}");
+            //        Console.WriteLine($"Order ID: {Order.OrderId}, Name: {Order.OrderName}");
             //    }
             //}
 
@@ -424,13 +429,13 @@ namespace FirstEntity
 
             //using (ApplicationDbContext context = new()) //Task 22
             //{
-            //    context.Products.ExecuteUpdate(p => p.SetProperty(product => product.Price, product => product.Price * 1.1m));
+            //    context.Orders.ExecuteUpdate(p => p.SetProperty(Order => Order.Price, Order => Order.Price * 1.1m));
             //    Console.WriteLine("Prices updated.");
 
-            //    var updatedPrices = context.Products.ToList();
+            //    var updatedPrices = context.Orders.ToList();
             //    foreach (var prod in updatedPrices)
             //    {
-            //        Console.WriteLine($"Product ID: {prod.ProductId}, Name: {prod.Price}");
+            //        Console.WriteLine($"Order ID: {prod.OrderId}, Name: {prod.Price}");
             //    }
             //}
 
@@ -450,6 +455,305 @@ namespace FirstEntity
             //        }
             //    }
             //}
+
+            //-------------------------------------------Գլուխ 7-8-----------------------------------------
+
+            //using (ApplicationDbContext context = new()) //Task 1
+            //{
+            //    var specPrice = 400;
+            //    var priceGreater = context.Orders.FromSqlRaw("Select * from Orders where Price > {0}", specPrice).ToList();
+
+            //    foreach (var prod in priceGreater)
+            //        Console.WriteLine($"{prod.OrderName} -  {prod.Price}");
+            //}
+
+            //using (ApplicationDbContext context = new()) //Task 2
+            //{
+            //    var fixedPrice = 200000;
+            //    var categUpdate = "Phone";
+            //    var priceGreater = context.Database.ExecuteSqlRaw($"Update Orders set Price = {fixedPrice} " +
+            //        $"where CategoryId IN (select CategoryId from Categories where CategoryName = '{categUpdate}')");
+            //    Console.WriteLine("Price has Updated.");
+            //}
+
+            //using (ApplicationDbContext context = new()) //Task 3
+            //{
+            //    var targetSubstring = "%374%";
+            //    var specNumber = context.Customers.FromSqlInterpolated($"select * from Customers where ContactNumber LIKE {targetSubstring}").ToList();
+            //    foreach (var num in specNumber)
+            //        Console.WriteLine($"{num.Name} - {num.ContactNumber}");
+
+            //}
+
+            //using (ApplicationDbContext context = new()) //Task 4
+            //{
+            //    var sixMonthsAgo = DateTime.Now.AddMonths(-6);
+
+            //    context.Database.ExecuteSqlInterpolated($@"delete from Customers where CustomerId Not IN 
+            //                 (select distinct Orders.CustomerId from Orders where Orders.OrderDate >= {sixMonthsAgo})");
+            //    foreach (var cust in context.Customers.ToList())
+            //        Console.WriteLine($"{cust.CustomerId} - {cust.Name}");
+
+
+            //--------------------------------------------------------------JOin
+
+
+            //var sixMonthsAgo = DateTime.Now.AddMonths(-6);
+
+            //context.Database.ExecuteSqlInterpolated($@"delete from Customers where CustomerId NOT IN 
+            //            (select distinct Customers.CustomerId
+            //            from Customers
+            //            join Orders on Customers.CustomerId = Orders.CustomerId
+            //            where Orders.OrderDate >= {sixMonthsAgo})");
+
+            //foreach (var cust in context.Customers.ToList())
+            //{
+            //    Console.WriteLine($"{cust.CustomerId} - {cust.Name}");
+            //}
+
+            //using (ApplicationDbContext context = new()) //Task 5
+            //{
+            //    int customerId = 2;
+            //    var customer = context.Customers.Where(c => c.CustomerId == customerId)
+            //        .Select(c => c.Birthdate)
+            //        .FirstOrDefault();
+
+            //    SqlParameter sqlParameter = new("@age", customer);
+            //    var age = context.Set<CustomerAge>().FromSqlRaw("Select dbo.CalculateAge(@age) as Age", sqlParameter).FirstOrDefault();
+            //    Console.WriteLine(age.Age);
+            //}
+
+            //using (ApplicationDbContext context = new()) //Task 5 code-first Db context approach
+            //{
+            //    int customerId = 1;
+            //    var customer = context.Customers.FirstOrDefault(c => c.CustomerId == customerId);
+
+            //    if (customer != null)
+            //    {
+            //        int age = context.CalculateAge(customer.Birthdate);
+            //        Console.WriteLine($"Customer ID {customerId} is {age} years old.");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Customer not found.");
+            //    }
+            //}
+
+
+
+            //using (ApplicationDbContext context = new()) //Task 5 Code-First migration approach
+            //{
+            //    int customerId = 1;
+            //    var customer = context.Customers.Where(c => c.CustomerId == customerId)
+            //        .Select(c => c.Birthdate)
+            //        .FirstOrDefault();
+
+            //    SqlParameter sqlParameter = new("@age", customer);
+            //    var age = context.Set<CustomerAge>().FromSqlRaw("Select dbo.CalculateAge1(@age) as Age", sqlParameter).FirstOrDefault();
+            //    Console.WriteLine(age.Age);
+            //}
+
+            //using (ApplicationDbContext context = new()) //Task 6
+            //{
+            //    SqlParameter param = new SqlParameter("@threshold", 1000);
+            //    var users = context.Orders.FromSqlRaw("SELECT * FROM dbo.GetOrdersAboveThreshold (@threshold)", param).ToList();
+            //    foreach (var u in users)
+            //        Console.WriteLine($"{u.OrderId} - {u.TotalAmount}");
+            //}
+
+            //using (ApplicationDbContext context = new()) //Task 7
+            //{
+            //    SqlParameter param = new()
+            //    {
+            //        ParameterName = "@countOrders",
+            //        SqlDbType = SqlDbType.Int,
+            //        Direction = ParameterDirection.Output
+            //    };
+            //    context.Database.ExecuteSqlRaw("GetTotalCountOrders {0}, @countOrders OUT",2, param);
+            //    Console.WriteLine(param.Value);
+            //}
+
+            //using (ApplicationDbContext context = new()) //Task 8
+            //{
+            //    SqlParameter param = new("@id", 1);
+            //    var calls = context.CallDetails.FromSqlRaw("CalculateAndUpdateAverageCallDuration @id", param).ToList();
+
+            //}
+
+            //using (ApplicationDbContext context = new()) //Task 9
+            //{
+            //    try
+            //    {
+            //        Customer? customer = context.Customers.FirstOrDefault();
+            //        if (customer != null)
+            //        {
+            //            customer.Name = "Bob";
+            //            context.SaveChanges();
+            //            Console.WriteLine(customer.Name);
+            //        }
+
+            //        throw new DbUpdateConcurrencyException();
+            //    }
+            //    catch (DbUpdateConcurrencyException ex)
+            //    {
+            //        string logFilePath = "C:\\Users\\marie\\Desktop\\ErrorLog.log";
+
+            //        using (StreamWriter writer = new StreamWriter(logFilePath, true))
+            //        {
+            //            writer.WriteLine($"[Error DateTime]: {DateTime.Now}");
+            //            writer.WriteLine($"[Error Message]: {ex.Message}");
+            //            writer.WriteLine($"[Stack Trace]: {ex.StackTrace}");
+            //            writer.WriteLine(new string('-', 50));
+            //        }
+            //    }
+            //}
+
+            //using (ApplicationDbContext context = new()) //Task 10
+            //{
+
+            //    Customer user1 = new() { Name = "Tom", Address="Yerevan", ContactNumber = "37493935555", Email="asdfgh@gmail.com" };
+            //    Customer user2 = new() { Name = "Alice", Address = "Yerevan", ContactNumber = "37493935556", Email = "asdfghghb@gmail.com" };
+
+            //    context.Customers.Add(user1);
+            //    context.Customers.Add(user2);
+            //    context.SaveChanges();
+
+            //    var users = context.Customers.ToList();
+            //    Console.WriteLine("Список пользователей:");
+            //    foreach (Customer u in users)
+            //    {
+            //        Console.WriteLine($"{u.CustomerId}.{u.Name}");
+            //    }
+            //}
+
+            //Func<ApplicationDbContext, int, Customer?> customerById =
+            //EF.CompileQuery((ApplicationDbContext context, int id) => context.Customers.Where(c => c.CustomerId == id).FirstOrDefault());
+            //using (ApplicationDbContext context = new()) //--------------------------------------------------------Task 11
+            //{
+            //    var customer = customerById(context, 2);
+            //    if (customer != null) Console.WriteLine($"{customer.Name} ");
+            //}
+
+
+            //using (ApplicationDbContext db = new ()) //Task 12
+            //{
+
+            //    // создаем представление
+            //    db.Database.ExecuteSqlRaw(@"CREATE VIEW View_OrderViewModel AS 
+            //                                SELECT c.Name AS CustomerName, o.OrderId AS OrderId, o.TotalAmount AS TotalAmount   
+            //                                FROM Customers c
+            //                                INNER JOIN Orders o on o.CustomerId = c.CustomerId
+            //                                ");
+            //    //Customer c1 = new Customer { Name = "Apple" };
+            //    //Customer c2 = new Customer { Name = "Samsung" };
+            //    //Customer c3 = new Customer { Name = "Huawei" };
+            //    //db.Customers.AddRange(c1, c2, c3);
+            //    //Order p1 = new Order {  Customer = c1, TotalAmount = 5 };
+            //    //Order p2 = new Order { Customer = c1, TotalAmount = 4 };
+            //    //Order p3 = new Order { Customer = c2, TotalAmount = 3 };
+            //    //Order p4 = new Order { Customer = c2, TotalAmount = 5 };
+            //    //Order p5 = new Order { Customer = c3, TotalAmount = 7 };
+            //    //db.Orders.AddRange(p1, p2, p3, p4, p5);
+            //    //db.SaveChanges();
+            //}
+
+            //using (ApplicationDbContext db = new ())
+            //{
+            //    // обращаемся к представлению
+            //    var CustomerOrders = db.OrderViewModel.ToList();
+            //    foreach (var item in CustomerOrders)
+            //    {
+            //        Console.WriteLine($"Customer: {item.CustomerName} Models: {item.OrderId} Sum: {item.TotalAmount}");
+            //    }
+            //}
+
+            //using(ApplicationDbContext context = new()) //Task 13
+            //{
+            //var user = context.Employee.FirstOrDefault();
+            //if (user != null)
+            //{
+            //    user.Name = "Bob";
+            //    // сохраняем изменения
+            //    context.SaveChanges();
+
+            //    // еще раз изменяем
+            //    user.Name = "Sam";
+            //    // сохраняем изменения
+            //    context.SaveChanges();
+
+            //    Console.WriteLine(user.Name);
+
+            //    var userEntry = context.Entry(user);
+            //    var createdAt = userEntry.Property<DateTime>("PeriodStart").CurrentValue;
+            //    var deletedAt = userEntry.Property<DateTime>("PeriodEnd").CurrentValue;
+            //    Console.WriteLine($"пользователь {user.Name}");
+            //    Console.WriteLine($"Дата создания: {createdAt}");
+            //    Console.WriteLine($"Дата удаления {deletedAt}");
+            //}
+
+            //    var history = context.Employee.TemporalAll()
+            //    .Where(u => u.EmployeeId == 1)
+            //    .OrderBy(e => EF.Property<DateTime>(e, "PeriodStart"))
+            //    .Select(u => new
+            //    {
+            //        User = u,
+            //        Start = EF.Property<DateTime>(u, "PeriodStart"),
+            //        End = EF.Property<DateTime>(u, "PeriodEnd")
+            //    }).ToList();
+            //    Console.WriteLine("История по пользователю с id=1");
+            //    foreach (var item in history)
+            //    {
+            //        Console.WriteLine($"{item.User.Name} from {item.Start} to {item.End}");
+            //    }
+            //}
         }
+        public class CustomLoggerProvider : ILoggerProvider
+        {
+            public ILogger CreateLogger(string categoryName)
+            {
+                return new CustomLogger();
+            }
+
+            public void Dispose()
+            {
+                // Cleanup logic, if needed
+            }
+        }
+
+        public class CustomLogger : ILogger
+        {
+            public IDisposable BeginScope<TState>(TState state)
+            {
+                return null;
+            }
+
+            public bool IsEnabled(LogLevel logLevel)
+            {
+                return logLevel == LogLevel.Information;
+            }
+
+            public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
+            {
+                if (!IsEnabled(logLevel))
+                    return;
+
+                using (StreamWriter writer = new StreamWriter("log.txt", true))
+                {
+                    writer.WriteLine($"[{DateTime.Now}] [{logLevel}] {formatter(state, exception)}");
+                }
+                //File.AppendAllText("log.txt", formatter(state, exception));
+                //Console.WriteLine(formatter(state, exception));
+                //Log levels
+            }
+
+
+        }
+
+            
     }
 }
+
+
+
+
+
